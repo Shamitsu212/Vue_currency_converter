@@ -1,0 +1,43 @@
+<script setup lang="ts">
+
+</script>
+
+<template>
+  
+    <form class="Form">
+
+        <div class="Form_Container">
+
+        </div>
+
+        <div class="Form_Container">
+
+        </div>
+
+    </form>
+
+</template>
+
+<style scoped>
+.Form{
+    width: 500px;
+    height: 140px;
+
+    background-color: white;
+    
+    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.3);
+
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+
+    padding: 25px 30px 20px 40px;
+}
+.Form_Container{
+    width: 50%;
+    height: 100%;
+}
+</style>

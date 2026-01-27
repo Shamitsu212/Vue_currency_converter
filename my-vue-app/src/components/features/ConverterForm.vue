@@ -1,22 +1,50 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue';
 
+import Converter_UI from '../UI/Converter_UI.vue';
+
+import { rates } from '../../data';
+
+const firstWallet = ref("rub")
+const secondWallet = ref("usd")
+
+const userInput = ref("0")
+const result = ref("0")
+
+watch([userInput, firstWallet, secondWallet], () => {
+
+  const amount = parseFloat(userInput.value)
+
+  if (isNaN(amount)) {
+    result.value = '0'
+    return
+  }
+
+  const converted = (amount / rates[firstWallet.value]!) * rates[secondWallet.value]!
+  result.value = converted.toFixed(2)
+})
 </script>
 
 <template>
-  
-    <form class="Form">
+  <form class="Form">
+    <div class="Form_Container">
+      <Converter_UI
+        v-model:wallet="firstWallet"
+        v-model:input="userInput"
+        :disabled="false"
+      />
+    </div>
 
-        <div class="Form_Container">
-
-        </div>
-
-        <div class="Form_Container">
-
-        </div>
-
-    </form>
-
+    <div class="Form_Container">
+      <Converter_UI
+        v-model:wallet="secondWallet"
+        v-model:input="result"
+        :disabled="true"
+      />
+    </div>
+  </form>
 </template>
+
 
 <style scoped>
 .Form{

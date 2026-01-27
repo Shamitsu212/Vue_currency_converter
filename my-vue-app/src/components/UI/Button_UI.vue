@@ -1,11 +1,28 @@
 <script setup lang="ts">
 
+const props = defineProps <{
+    wallet: string;
+    text: string;
+}>()
+
+const emits = defineEmits <{
+    (e: 'select', value: string):void
+}>()
+
+function handleClick() {
+    emits('select', props.text)
+}
+
 </script>
 
 <template>
   
-    <button class="Button">
-
+    <button 
+        class="Button" 
+        @click="handleClick"
+        :disabled="text == wallet"
+    >
+        {{ text }}
     </button>
 
 </template>
